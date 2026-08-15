@@ -32,11 +32,11 @@ output "imagebuilder_images_image_recipe_arn" {
 }
 output "imagebuilder_images_image_scanning_configuration" {
   description = "Map of image_scanning_configuration values across all imagebuilder_images, keyed the same as var.imagebuilder_images"
-  value       = { for k, v in aws_imagebuilder_image.imagebuilder_images : k => v.image_scanning_configuration if v.image_scanning_configuration != null && length(v.image_scanning_configuration) > 0 }
+  value       = { for k, v in aws_imagebuilder_image.imagebuilder_images : k => one(v.image_scanning_configuration) if v.image_scanning_configuration != null && length(v.image_scanning_configuration) > 0 }
 }
 output "imagebuilder_images_image_tests_configuration" {
   description = "Map of image_tests_configuration values across all imagebuilder_images, keyed the same as var.imagebuilder_images"
-  value       = { for k, v in aws_imagebuilder_image.imagebuilder_images : k => v.image_tests_configuration if v.image_tests_configuration != null && length(v.image_tests_configuration) > 0 }
+  value       = { for k, v in aws_imagebuilder_image.imagebuilder_images : k => one(v.image_tests_configuration) if v.image_tests_configuration != null && length(v.image_tests_configuration) > 0 }
 }
 output "imagebuilder_images_infrastructure_configuration_arn" {
   description = "Map of infrastructure_configuration_arn values across all imagebuilder_images, keyed the same as var.imagebuilder_images"
@@ -44,7 +44,7 @@ output "imagebuilder_images_infrastructure_configuration_arn" {
 }
 output "imagebuilder_images_logging_configuration" {
   description = "Map of logging_configuration values across all imagebuilder_images, keyed the same as var.imagebuilder_images"
-  value       = { for k, v in aws_imagebuilder_image.imagebuilder_images : k => v.logging_configuration if v.logging_configuration != null && length(v.logging_configuration) > 0 }
+  value       = { for k, v in aws_imagebuilder_image.imagebuilder_images : k => one(v.logging_configuration) if v.logging_configuration != null && length(v.logging_configuration) > 0 }
 }
 output "imagebuilder_images_name" {
   description = "Map of name values across all imagebuilder_images, keyed the same as var.imagebuilder_images"
